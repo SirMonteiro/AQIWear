@@ -1,0 +1,29 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    z-index: 1000;
+}
+
+.bottom-nav button i {
+    font-size: 24px;
+}
+
+.is-circle {
+    border-radius: 50%;
+}
+
+#map {
+    width: 100%;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    overflow: hidden;
+}

@@ -1,0 +1,34 @@
+{
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none"
+    },
+    "python.terminal.activateEnvironment": false,
+    "micropico.openOnStart": true,
+    "micropico.gcBeforeUpload": true,
+    "micropico.softResetAfterUpload": true,
+    "micropico.syncAllFileTypes": true,
+    "python.analysis.typeshedPaths": [
+        "~/.micropico-stubs/micropython-esp32-stubs==1.23.0.post2",
+        "lib",
+        "typings/lib",
+        ".venv/lib/python3.12/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "~/.micropico-stubs/micropython-esp32-stubs==1.23.0.post2",
+        "lib",
+        "typings/lib"
+    ],
+   "micropico.pyIgnore": [
+        ".git",
+        ".vscode",
+        ".venv",
+        "typings",
+        "tmp",
+        ".editorconfig",
+        ".gitignore",
+        ".micropico",
+        "README.md"
+    ]
+}

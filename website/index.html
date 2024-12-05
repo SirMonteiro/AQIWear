@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AQIWear</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+        />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet/dist/leaflet.css"
+        />
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet-geosearch/dist/geosearch.css"
+        />
+        <script src="https://unpkg.com/leaflet-geosearch/dist/bundle.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#"> AQIWear </a>
+                <a
+                    role="button"
+                    class="navbar-burger"
+                    aria-label="menu"
+                    aria-expanded="false"
+                    data-target="navbarBasicExample"
+                >
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <!-- <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item"> Home </a>
+
+                    <a class="navbar-item"> Documentation </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link"> More </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item"> About </a>
+                            <a class="navbar-item is-selected"> Jobs </a>
+                            <a class="navbar-item"> Contact </a>
+                            <hr class="navbar-divider" />
+                            <a class="navbar-item"> Report an issue </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary">
+                                <strong>Sign up</strong>
+                            </a>
+                            <a class="button is-light"> Log in </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </nav>
+
+        <section class="hero">
+            <div class="hero-body">
+                <p class="title is-2">AQIWear</p>
+                <div
+                    class="notification is-warning"
+                    id="bluetooth-notification"
+                >
+                    <button class="delete"></button>
+                    Dispositivo desconectado, Para mostrar os dados, conecte.
+                    Para conectar, clique no botão do bluetooth!
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="grid is-col-min-10">
+                    <div class="cell">
+                        <div class="has-text-centered">
+                            <h1 class="title">Temperatura</h1>
+                        </div>
+                        <div class="level">
+                            <div class="level-item">
+                                <span class="tag title is-primary">
+                                    <span id="temperature">--</span>
+                                    °C</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="cell">
+                        <div class="has-text-centered">
+                            <h1 class="title">Umidade</h1>
+                        </div>
+                        <div class="level">
+                            <div class="level-item">
+                                <span class="tag title is-primary">
+                                    <span id="humidity">--</span>
+                                    %</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="has-text-centered">
+                            <h1 class="title">Dew point</h1>
+                        </div>
+                        <div class="level">
+                            <div class="level-item">
+                                <span class="tag title is-primary">
+                                    <span id="dew-point">--</span>
+                                    °C</span
+                                >
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="cell">
+                        <div class="has-text-centered">
+                            <h1 class="title">CO<sub>2</sub></h1>
+                        </div>
+                        <div class="level">
+                            <div class="level-item">
+                                <span class="tag title is-primary">
+                                    <span id="CO2">--</span>
+                                    ppm</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="has-text-centered">
+                            <h1 class="title">Composto orgânico Volátil</h1>
+                        </div>
+                        <div class="level">
+                            <div class="level-item">
+                                <span class="tag title is-primary">
+                                    <span id="VOC">--</span>
+                                    ppb</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="has-text-centered">
+                            <h1 class="title">Partes por milhão 2.5</h1>
+                        </div>
+                        <div class="level">
+                            <div class="level-item">
+                                <span class="tag title is-primary">
+                                    <span id="PPM25">--</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="has-text-centered">
+                            <h1 class="title">Partes por milhão 1</h1>
+                        </div>
+                        <div class="level">
+                            <div class="level-item">
+                                <span class="tag title is-primary">
+                                    <span id="PPM1">--</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="bottom-nav">
+            <button id="bluetooth-btn" class="button is-primary is-circle">
+                <span class="icon">
+                    <i class="bx bx-bluetooth"></i>
+                </span>
+            </button>
+            <button id="map-btn" class="button is-primary is-circle is-large">
+                <span class="icon">
+                    <i class="bx bx-map-alt"></i>
+                </span>
+            </button>
+            <button
+                id="map-close-btn"
+                class="button is-primary is-circle is-large"
+                style="display: none"
+            >
+                <span class="icon">
+                    <i class="bx bx-x"></i>
+                </span>
+            </button>
+        </div>
+        <div id="map"></div>
+        <footer class="footer p-3">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>AQIWear project</strong> by Alana,
+                    <a href="https://github.com/sirmonteiro">Gabriel</a>,
+                    Laurielle, Vitor. The website content is licensed
+                    <a
+                        href="https://creativecommons.org/licenses/by-nc-sa/4.0//"
+                        >CC BY NC SA 4.0</a
+                    >.
+                </p>
+            </div>
+        </footer>
+        <script src="static/js/script.js"></script>
+    </body>
+</html>
