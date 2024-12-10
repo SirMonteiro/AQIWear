@@ -23,6 +23,7 @@
             href="https://unpkg.com/leaflet-geosearch/dist/geosearch.css"
         />
         <script src="https://unpkg.com/leaflet-geosearch/dist/bundle.min.js"></script>
+        <link rel="manifest" href="/static/manifest.json" />
     </head>
     <body>
         <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -77,6 +78,12 @@
         <section class="hero">
             <div class="hero-body">
                 <p class="title is-2">AQIWear</p>
+
+                <div class="notification is-danger" id="browser-notification">
+                    Esse navegador não suporta bluetooth, por favor abra esse
+                    site em navegadores baseados em chrome!
+                </div>
+
                 <div
                     class="notification is-warning"
                     id="bluetooth-notification"
@@ -93,11 +100,24 @@
                 <div class="grid is-col-min-10">
                     <div class="cell">
                         <div class="has-text-centered">
+                            <h1 class="title">Qualidade do ar</h1>
+                        </div>
+                        <div class="level">
+                            <div class="level-item">
+                                <span class="sensor-tag tag title is-primary">
+                                    <span id="AQI">--</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell">
+                        <div class="has-text-centered">
                             <h1 class="title">Temperatura</h1>
                         </div>
                         <div class="level">
                             <div class="level-item">
-                                <span class="tag title is-primary">
+                                <span class="sensor-tag tag title is-primary">
                                     <span id="temperature">--</span>
                                     °C</span
                                 >
@@ -139,7 +159,7 @@
                         </div>
                         <div class="level">
                             <div class="level-item">
-                                <span class="tag title is-primary">
+                                <span class="sensor-tag tag title is-primary">
                                     <span id="CO2">--</span>
                                     ppm</span
                                 >
@@ -153,7 +173,7 @@
                         </div>
                         <div class="level">
                             <div class="level-item">
-                                <span class="tag title is-primary">
+                                <span class="sensor-tag tag title is-primary">
                                     <span id="VOC">--</span>
                                     ppb</span
                                 >
@@ -167,9 +187,10 @@
                         </div>
                         <div class="level">
                             <div class="level-item">
-                                <span class="tag title is-primary">
+                                <span class="sensor-tag tag title is-primary">
                                     <span id="PPM25">--</span>
-                                </span>
+                                    ppm</span
+                                >
                             </div>
                         </div>
                     </div>
@@ -180,9 +201,10 @@
                         </div>
                         <div class="level">
                             <div class="level-item">
-                                <span class="tag title is-primary">
+                                <span class="sensor-tag tag title is-primary">
                                     <span id="PPM1">--</span>
-                                </span>
+                                    ppm</span
+                                >
                             </div>
                         </div>
                     </div>

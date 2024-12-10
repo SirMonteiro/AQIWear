@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 });
 
+const webBluetoothNotification = document.getElementById(
+  "browser-notification",
+);
+
+if (!navigator.bluetooth) {
+  webBluetoothNotification.style.display = "block";
+}
+
 const mapContainer = document.getElementById("map-container");
 const mapBtn = document.getElementById("map-btn");
 const mapCloseBtn = document.getElementById("map-close-btn");
@@ -128,10 +136,12 @@ async function handleCharacteristic(
       const dataView = new DataView(value.buffer);
       const decodedValue = dataView.getInt16(0, true); // Little-endian
       if (divideper100) {
-        element.textContent = decodedValue / 100;
+        textValue = decodedValue / 100;
       } else {
-        element.textContent = decodedValue;
+        textValue = decodedValue;
       }
+      element.textContent = textValue;
+      changeColor(element, textValue);
     });
   } catch (error) {
     console.error(
@@ -179,5 +189,95 @@ bluetoothBtn.addEventListener("click", async () => {
     await handleCharacteristic(service, characteristics.PPM1, PPM1);
   } catch (error) {
     console.error("Bluetooth connection failed:", error);
+  }
+});
+
+function changeColor(element, value) {
+  tag = element.parentNode;
+  // console.log(element.id);
+  switch (element.id) {
+    case "temperature":
+      limit = 36;
+      break;
+    case "CO2":
+      limit = 1000;
+      break;
+    case "VOC":
+      limit = 100;
+      break;
+    case "PPM1":
+      limit = 4.8;
+      break;
+    case "PPM25":
+      limit = 12;
+      break;
+  }
+  if (value > limit) {
+    // console.log(value);
+    tag.classList.remove("is-primary");
+    tag.classList.add("is-warning");
+  } else {
+    tag.classList.remove("is-warning");
+    tag.classList.add("is-primary");
+  }
+  updateAQIStatus();
+}
+
+function updateAQIStatus() {
+  const sensors = document.querySelectorAll(".sensor-tag");
+  let isWarning = false;
+
+  // Check if any sensor has a warning status
+  sensors.forEach((sensor) => {
+    if (sensor.classList.contains("is-warning")) {
+      isWarning = true;
+    }
+  });
+
+  // Update AQI status based on the result
+  const AQI = document.getElementById("AQI");
+  if (isWarning) {
+    AQI.innerText = "Moderado";
+    AQI.parentNode.classList.remove("is-primary");
+    AQI.parentNode.classList.add("is-warning");
+  } else {
+    AQI.innerText = "BOM";
+    AQI.parentNode.classList.remove("is-warning");
+    AQI.parentNode.classList.add("is-primary");
+  }
+}
+
+mapBtn.addEventListener("click", () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        map.setView([latitude, longitude], 15);
+
+        // Create or update the circle with real-time data
+        const circle = L.circle([latitude, longitude], {
+          color: "cyan", // Color of the circle border
+          fillColor: "cyan", // Fill color of the circle
+          fillOpacity: 0.5, // Opacity of the fill
+          radius: 100, // Initial radius in meters (update dynamically if needed)
+        }).addTo(map);
+
+        // Update the circle's popup with current data
+        const popupContent = `
+          <strong>Data at Current Location:</strong><br>
+          Temperature: ${temperature.textContent}°C<br>
+          CO2: ${CO2.textContent} ppm<br>
+          VOC: ${VOC.textContent} ppb<br>
+          PPM 2.5: ${PPM25.textContent} ppm<br>
+          PPM 1: ${PPM1.textContent} ppm
+        `;
+        circle.bindPopup(popupContent).openPopup();
+      },
+      () => {
+        alert("Unable to retrieve your location.");
+      },
+    );
+  } else {
+    alert("Geolocation is not supported by your browser.");
   }
 });
