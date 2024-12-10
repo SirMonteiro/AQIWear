@@ -2,7 +2,7 @@
   "name": "AQIWear",
   "short_name": "AQIWear",
   "description": "AQIWear: A wearable air quality monitoring project.",
-  "start_url": "/index.html",
+  "start_url": "website/index.html",
   "display": "standalone",
   "background_color": "#131519",
   "theme_color": "#00D0B1",
