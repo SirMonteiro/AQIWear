@@ -79,15 +79,13 @@ O dispositivo foi montado todo via conexão por fios, com os componentes dispost
 
 ---
 
-# Resultados
+# Resultados e conclusão
 
+Como resultado deste protótipo, desenvolvemos um colete capaz de medir temperatura, CO2, partículas em suspensão (PM2,5) e partículas maiores (PM10). Os dados coletados são exibidos ao usuário por meio de um software desenvolvido especificamente para essa finalidade. De forma geral, o colete consegue realizar uma análise da qualidade do ar. No entanto, o sensor de temperatura e umidade apresentou uma falha na funcionalidade de medição de umidade, o que poderia ter contribuído ainda mais para a precisão da métrica, considerando a relevância da umidade na avaliação da qualidade do ar.
 
+Além disso, implementamos a funcionalidade de exibir os dados em um mapa, de forma gráfica. Essa funcionalidade, caso houvesse mais usuários, permitiria visualizar a qualidade do ar nas regiões onde outros usuários estivessem. Dessa forma, os próprios usuários poderiam identificar e evitar áreas com baixa qualidade do ar.
 
----
-
-# Conclusão
-
-
+Como conclusão, o desenvolvimento do colete para medir a qualidade do ar representa um avanço significativo tanto para os usuários quanto para a área de pesquisa. Para os usuários, o dispositivo oferece uma ferramenta prática e acessível para monitorar a qualidade do ar em tempo real, ajudando na prevenção de problemas respiratórios e na tomada de decisões mais informadas sobre os locais que frequentam. Essa funcionalidade é especialmente relevante para indivíduos com condições respiratórias sensíveis, como asma ou alergias, promovendo mais segurança e qualidade de vida. Para a área de pesquisa, o projeto contribui com uma abordagem inovadora para o monitoramento ambiental, fornecendo dados valiosos que podem ser utilizados em estudos sobre poluição, mudanças climáticas e saúde pública. Além disso, a integração de sensores com visualização gráfica em mapas abre caminhos para estudos de correlação entre qualidade do ar e padrões regionais, oferecendo uma base para o desenvolvimento de políticas públicas mais eficientes e sustentáveis. Este projeto demonstra o potencial de soluções tecnológicas acessíveis para unir ciência e bem-estar, trazendo benefícios diretos à sociedade e incentivando avanços no campo da pesquisa ambiental.
 
 ---
 
